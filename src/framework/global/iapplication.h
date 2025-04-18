@@ -24,6 +24,8 @@
 
 #include "types/string.h"
 #include "types/version.h"
+#include "modularity/context.h"
+#include "modularity/modulesioc.h"
 #include "modularity/imoduleinterface.h"
 
 namespace shira {
@@ -44,6 +46,9 @@ public:
     virtual String title() const = 0;
 
     virtual Version version() const = 0;
+
+    virtual const modularity::ContextPtr iocContext() const = 0;
+    virtual modularity::ModulesIoC *ioc() const = 0;
 };
 
 }

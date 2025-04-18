@@ -19,29 +19,21 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GUIAPP_H
-#define GUIAPP_H
+#ifndef GLOBAL_MODULARITY_CONTEXT_H
+#define GLOBAL_MODULARITY_CONTEXT_H
 
-#include <vector>
+#include <memory>
 
-#include "global/baseapplication.h"
-#include "modularity/modulesioc.h"
-#include "modularity/imodulesetup.h"
+namespace shira::modularity {
 
-namespace shira::app {
-
-class GuiApp : public shira::BaseApplication
+using IoCID = int;
+struct Context
 {
-public:
-    GuiApp();
-
-    void addModule(shira::modularity::IModuleSetup *module);
-    void perform();
-
-private:
-    std::vector<shira::modularity::IModuleSetup *> m_modules;
+    IoCID id = -1;
 };
+
+using ContextPtr = std::shared_ptr<Context>;
 
 }
 
-#endif // GUIAPP_H
+#endif // GLOBAL_MODULARITY_CONTEXT_H

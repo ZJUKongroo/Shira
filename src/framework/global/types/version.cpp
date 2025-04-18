@@ -66,6 +66,12 @@ Version::Version(int major, int minor, int patch, const String &suffix, int suff
 Version::Version(const String &versionStr)
 {
     String version = version.left(version.indexOf(SUFFIX_DELIMITER));
+    // TO DO!
+}
+
+Version::Version(const std::string &versionStr)
+    : Version(String::fromStdString(versionStr))
+{
 }
 
 int Version::major() const

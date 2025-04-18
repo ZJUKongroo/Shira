@@ -19,29 +19,32 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GUIAPP_H
-#define GUIAPP_H
+#include "baseapplication.h"
 
-#include <vector>
+using namespace shira;
 
-#include "global/baseapplication.h"
-#include "modularity/modulesioc.h"
-#include "modularity/imodulesetup.h"
-
-namespace shira::app {
-
-class GuiApp : public shira::BaseApplication
+String BaseApplication::appName()
 {
-public:
-    GuiApp();
-
-    void addModule(shira::modularity::IModuleSetup *module);
-    void perform();
-
-private:
-    std::vector<shira::modularity::IModuleSetup *> m_modules;
-};
-
+    return String();
 }
 
-#endif // GUIAPP_H
+String BaseApplication::appTitle()
+{
+    return String();
+}
+
+Version BaseApplication::appVersion()
+{
+    static Version v("0.0.0");
+    return v;
+}
+
+const modularity::ContextPtr BaseApplication::iocContext() const
+{
+    return m_iocContext;
+}
+
+modularity::ModulesIoC *BaseApplication::ioc() const
+{
+    return modularity::_ioc(m_iocContext);
+}

@@ -41,22 +41,130 @@ namespace shira::modularity {
 
 constexpr std::string_view funcNameBySig(const std::string_view &sig)
 {
-    return std::string_view();
+    constexpr std::string_view Colon("::");
+    constexpr std::string_view ArgBegin("(");
+    constexpr std::string_view Space(" ");
+
+    std::size_t endFunc = sig.find_first_of(ArgBegin);
+    if (endFunc == std::string_view::npos) {
+        return sig;
+    }
+
+    std::size_t beginFunc = sig.find_last_of(Colon, endFunc);
+    if (beginFunc == std::string_view::npos) {
+        beginFunc = sig.find_last_of(Space, endFunc);
+    }
+
+    if (beginFunc == std::string_view::npos) {
+        beginFunc = 0;
+    } else {
+        beginFunc += 1;
+    }
+
+    return sig.substr(beginFunc, (endFunc - beginFunc));
 }
 
 constexpr std::string_view classNameBySig(const std::string_view &sig)
 {
-    return std::string_view();
+    constexpr std::string_view Colon("::");
+    constexpr std::string_view ArgBegin("(");
+    constexpr std::string_view Space(" ");
+
+    std::size_t endFunc = sig.find_first_of(ArgBegin);
+    if (endFunc == std::string_view::npos) {
+        return sig;
+    }
+
+    std::size_t beginFunc = sig.find_last_of(Colon, endFunc);
+    if (beginFunc == std::string_view::npos) {
+        return std::string_view();
+    }
+
+    std::size_t beginClassColon = sig.find_last_of(Colon, beginFunc - 2);
+    std::size_t beginClassSpace = sig.find_last_of(Space, beginFunc - 2);
+
+    std::size_t beginClass = std::string_view::npos;
+    if (beginClassColon == std::string_view::npos) {
+        beginClass = beginClassSpace;
+    } else if (beginClassSpace == std::string_view::npos) {
+        beginClass = beginClassColon;
+    } else {
+        beginClass = std::max(beginClassColon, beginClassSpace);
+    }
+
+    if (beginClass == std::string_view::npos) {
+        beginClass = 0;
+    } else {
+        beginClass += 1;
+    }
+
+    return sig.substr(beginClass, (beginFunc - 1 - beginClass));
 }
 
 constexpr std::string_view classFuncBySig(const std::string_view &sig)
 {
-    return std::string_view();
+    constexpr std::string_view Colon("::");
+    constexpr std::string_view ArgBegin("(");
+    constexpr std::string_view Space(" ");
+
+    std::size_t endFunc = sig.find_first_of(ArgBegin);
+    if (endFunc == std::string_view::npos) {
+        return sig;
+    }
+
+    std::size_t beginFunc = sig.find_last_of(Colon, endFunc);
+    if (beginFunc == std::string_view::npos) {
+        return funcNameBySig(sig);
+    }
+
+    std::size_t beginClassColon = sig.find_last_of(Colon, beginFunc - 2);
+    std::size_t beginClassSpace = sig.find_last_of(Space, beginFunc - 2);
+
+    std::size_t beginClass = std::string_view::npos;
+    if (beginClassColon == std::string_view::npos) {
+        beginClass = beginClassSpace;
+    } else if (beginClassSpace == std::string_view::npos) {
+        beginClass = beginClassColon;
+    } else {
+        beginClass = std::max(beginClassColon, beginClassSpace);
+    }
+
+    if (beginClass == std::string_view::npos) {
+        beginClass = 0;
+    } else {
+        beginClass += 1;
+    }
+
+    return sig.substr(beginClass, (endFunc - beginClass));
 }
 
 constexpr std::string_view moduleNameBySig(const std::string_view &sig)
 {
-    return std::string_view();
+    constexpr std::string_view Colon("::");
+    constexpr std::string_view ArgBegin("(");
+    constexpr std::string_view Space(" ");
+
+    std::size_t endFunc = sig.find_first_of(ArgBegin);
+    if (endFunc == std::string_view::npos) {
+        return sig;
+    }
+
+    std::size_t beginFunc = sig.find_last_of(Space, endFunc);
+    if (beginFunc == std::string_view::npos) {
+        return std::string_view();
+    }
+
+    std::size_t beginModule = sig.find_first_of(Colon, beginFunc) + 2;
+    if (beginModule == std::string_view::npos) {
+        return std::string_view();
+    }
+
+    std::size_t endModule = sig.find_first_of(Colon, beginModule);
+    if (endModule == std::string_view::npos) {
+        return std::string_view();
+    }
+
+    return sig.substr(beginModule, (endModule - beginModule));
 }
 
 }

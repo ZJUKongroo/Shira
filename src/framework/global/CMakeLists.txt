@@ -28,10 +28,16 @@ set(MODULE_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/types/string.h
     ${CMAKE_CURRENT_SOURCE_DIR}/types/version.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/types/version.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/modularity/context.h
     ${CMAKE_CURRENT_SOURCE_DIR}/modularity/funcinfo.h
     ${CMAKE_CURRENT_SOURCE_DIR}/modularity/imodulesetup.h
     ${CMAKE_CURRENT_SOURCE_DIR}/modularity/imoduleinterface.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/modularity/modulesioc.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/modularity/ioc.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/modularity/ioc.h
     ${CMAKE_CURRENT_SOURCE_DIR}/containers.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/baseapplication.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/baseapplication.h
     ${CMAKE_CURRENT_SOURCE_DIR}/globalmodule.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/globalmodule.h
 )

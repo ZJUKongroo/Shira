@@ -23,18 +23,28 @@
 #define BASEAPPLICATION_H
 
 #include "iapplication.h"
+#include "modularity/ioc.h"
+#include "modularity/context.h"
+#include "modularity/modulesioc.h"
 
 namespace shira {
 
 class BaseApplication : public IApplication
 {
 public:
-    virtual ~BaseApplication() = default;
+    static String appName();
+    static String appTitle();
+    static Version appVersion();
 
-    virtual String name() const override { return u"Shira"; }
-    virtual String title() const override { return u"Shira title"; }
+    String name() const override { return appName(); }
+    String title() const override { return appTitle(); }
+    Version version() const override { return appVersion(); }
 
-    virtual Version version() const override { return String(u"1.0.0"); }
+    const modularity::ContextPtr iocContext() const override;
+    modularity::ModulesIoC *ioc() const override;
+
+private:
+    modularity::ContextPtr m_iocContext;
 };
 
 }

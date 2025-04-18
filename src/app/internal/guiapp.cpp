@@ -24,6 +24,8 @@
 #include <QtCore/QString>
 #include <QtCore/QUrl>
 
+#include "ui/iuiengine.h"
+
 using namespace shira::app;
 
 GuiApp::GuiApp()
@@ -37,6 +39,10 @@ void GuiApp::addModule(shira::modularity::IModuleSetup *module)
 
 void GuiApp::perform()
 {
+    QQmlApplicationEngine *engine = ioc()->resolve<shira::ui::IUiEngine>("app")->qmlAppEngine();
+
     const QString mainQmlFile = "/Main.qml";
     const QUrl url(QString(appshell_QML_IMPORT) + mainQmlFile);
+
+    engine->load(url);
 }

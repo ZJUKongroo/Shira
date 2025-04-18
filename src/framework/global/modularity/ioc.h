@@ -19,29 +19,20 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GUIAPP_H
-#define GUIAPP_H
+#ifndef GLOBAL_MODULARITY_IOC_H
+#define GLOBAL_MODULARITY_IOC_H
 
-#include <vector>
+#include <map>
 
-#include "global/baseapplication.h"
-#include "modularity/modulesioc.h"
-#include "modularity/imodulesetup.h"
+#include "context.h"
+#include "modulesioc.h"
 
-namespace shira::app {
+namespace shira::modularity {
 
-class GuiApp : public shira::BaseApplication
-{
-public:
-    GuiApp();
+static std::map<IoCID, ModulesIoC *> s_map;
 
-    void addModule(shira::modularity::IModuleSetup *module);
-    void perform();
-
-private:
-    std::vector<shira::modularity::IModuleSetup *> m_modules;
-};
+ModulesIoC *_ioc(const ContextPtr &ctx = nullptr);
 
 }
 
-#endif // GUIAPP_H
+#endif // GLOBAL_MODULARITY_IOC_H
