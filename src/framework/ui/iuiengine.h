@@ -28,7 +28,7 @@
 
 namespace shira::ui {
 
-class IUiEngine : public MODULE_EXPORT_INTERFACE
+class IUiEngine : MODULE_EXPORT_INTERFACE
 {
     INTERFACE_ID(IUiEngine)
 

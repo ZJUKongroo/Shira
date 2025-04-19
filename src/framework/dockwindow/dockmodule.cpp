@@ -19,20 +19,21 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef LOG_H
-#define LOG_H
+#include "dockmodule.h"
 
-#include <QtCore/QDebug>
+using namespace shira::dock;
 
-#define LOGE qDebug
-#define LOGW qDebug
+std::string DockModule::moduleName() const
+{
+    return "dock";
+}
 
-#define IF_ASSERT_FAILED_X(cond, msg) if (!(cond)) {                \
-    LOGE() << "\"ASSERT FAILED!\":" << msg << __FILE__ << __LINE__; \
-    Q_ASSERT(cond);                                                 \
-}                                                                   \
-    if (!(cond))
+void DockModule::registerExports()
+{
 
-#define IF_ASSERT_FAILED(cond) IF_ASSERT_FAILED_X(cond, #cond)
+}
 
-#endif // LOG_H
+void DockModule::onInit()
+{
+
+}

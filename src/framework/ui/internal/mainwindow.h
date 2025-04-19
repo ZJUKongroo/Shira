@@ -19,20 +19,35 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef LOG_H
-#define LOG_H
+#ifndef UI_INTERNAL_MAINWINDOW_H
+#define UI_INTERNAL_MAINWINDOW_H
 
-#include <QtCore/QDebug>
+#include "imainwindow.h"
 
-#define LOGE qDebug
-#define LOGW qDebug
+namespace shira::ui {
 
-#define IF_ASSERT_FAILED_X(cond, msg) if (!(cond)) {                \
-    LOGE() << "\"ASSERT FAILED!\":" << msg << __FILE__ << __LINE__; \
-    Q_ASSERT(cond);                                                 \
-}                                                                   \
-    if (!(cond))
+class MainWindow : public IMainWindow
+{
+public:
+    MainWindow() = default;
 
-#define IF_ASSERT_FAILED(cond) IF_ASSERT_FAILED_X(cond, #cond)
+    void init(MainWindowBridge *bridge) override;
+    void deinit() override;
 
-#endif // LOG_H
+    QWindow *qWindow() const override;
+
+    void requestShowOnBack() override;
+    void requestShowOnFront() override;
+
+    bool isFullScreen() const override;
+    void toggleFullScreen() override;
+
+    QScreen *screen() const override;
+
+private:
+    MainWindowBridge *m_bridge = nullptr;
+};
+
+}
+
+#endif // UI_INTERNAL_MAINWINDOW_H

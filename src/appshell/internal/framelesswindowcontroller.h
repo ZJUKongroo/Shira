@@ -19,20 +19,29 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef LOG_H
-#define LOG_H
+#ifndef INTERNAL_FRAMELESSWINDOWCONTROLLER_H
+#define INTERNAL_FRAMELESSWINDOWCONTROLLER_H
 
-#include <QtCore/QDebug>
+#include <QtCore/QRect>
+#include <QtCore/QAbstractNativeEventFilter>
 
-#define LOGE qDebug
-#define LOGW qDebug
+namespace shira::appshell {
 
-#define IF_ASSERT_FAILED_X(cond, msg) if (!(cond)) {                \
-    LOGE() << "\"ASSERT FAILED!\":" << msg << __FILE__ << __LINE__; \
-    Q_ASSERT(cond);                                                 \
-}                                                                   \
-    if (!(cond))
+class FramelessWindowController : public QAbstractNativeEventFilter
+{
+public:
+    virtual void init();
 
-#define IF_ASSERT_FAILED(cond) IF_ASSERT_FAILED_X(cond, #cond)
+    QRect windowTitleBarMoveArea() const;
+    void setWindowTitleBarMoveArea(const QRect &area);
 
-#endif // LOG_H
+protected:
+    bool nativeEventFilter(const QByteArray &eventType, void *message, qintptr *result) override;
+
+private:
+    QRect m_windowTitleBarMoveArea;
+};
+
+}
+
+#endif // INTERNAL_FRAMELESSWINDOWCONTROLLER_H

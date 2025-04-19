@@ -82,10 +82,10 @@ public:                                                                         
     }                                                                                   \
 private:
 
-#define MODULE_EXPORT_INTERFACE shira::modularity::IModuleExportInterface
-#define MODULE_EXPORT_CREATOR shira::modularity::IModuleExportCreator
+#define MODULE_EXPORT_INTERFACE public shira::modularity::IModuleExportInterface
+#define MODULE_EXPORT_CREATOR public shira::modularity::IModuleExportCreator
 
-#define MODULE_INTERNAL_INTERFACE shira::modularity::IModuleInternalInterface
-#define MODULE_INTERNAL_CREATOR shira::modularity::IModuleInternalCreator
+#define MODULE_INTERNAL_INTERFACE public shira::modularity::IModuleInternalInterface
+#define MODULE_INTERNAL_CREATOR public shira::modularity::IModuleInternalCreator
 
 #endif // GLOBAL_MODULARITY_IMODULEINTERFACE

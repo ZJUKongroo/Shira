@@ -19,20 +19,38 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef LOG_H
-#define LOG_H
+#include "winframelesswindowcontroller.h"
 
-#include <QtCore/QDebug>
+using namespace shira::appshell;
 
-#define LOGE qDebug
-#define LOGW qDebug
+static HWND s_hwnd = 0;
 
-#define IF_ASSERT_FAILED_X(cond, msg) if (!(cond)) {                \
-    LOGE() << "\"ASSERT FAILED!\":" << msg << __FILE__ << __LINE__; \
-    Q_ASSERT(cond);                                                 \
-}                                                                   \
-    if (!(cond))
+static void updateWindowPosition()
+{
 
-#define IF_ASSERT_FAILED(cond) IF_ASSERT_FAILED_X(cond, #cond)
+}
 
-#endif // LOG_H
+WinFramelessWindowController::WinFramelessWindowController()
+    : FramelessWindowController()
+{
+    memset(&m_monitorInfo, 0, sizeof(m_monitorInfo));
+    m_monitorInfo.cbSize = sizeof(MONITORINFO);
+
+    qApp->installEventFilter(this);
+    qApp->installNativeEventFilter(this);
+}
+
+void WinFramelessWindowController::init()
+{
+    // TO DO!
+}
+
+bool WinFramelessWindowController::eventFilter(QObject *watched, QEvent *event)
+{
+    return false;
+}
+
+bool WinFramelessWindowController::nativeEventFilter(const QByteArray &eventByte, void *message, qintptr *result)
+{
+    return false;
+}

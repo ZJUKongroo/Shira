@@ -19,21 +19,63 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "uimodule.h"
+#include "mainwindowbridge.h"
 
-#include "internal/mainwindow.h"
+#include <QtGui/QWindow>
 
 using namespace shira::ui;
 
-std::string UiModule::moduleName() const
+MainWindowBridge::MainWindowBridge(QObject *parent)
+    : QObject(parent)
 {
-    return "ui";
 }
 
-void UiModule::registerExports()
+MainWindowBridge::~MainWindowBridge()
 {
-    m_uiengine = std::make_shared<UiEngine>(iocContext());
+    // mainwindow()->deinit();
+}
 
-    ioc()->registerExport(moduleName(), m_uiengine);
-    ioc()->registerExport(moduleName(), new MainWindow());
+QWindow *MainWindowBridge::qWindow() const
+{
+    return m_window;
+}
+
+QString MainWindowBridge::filePath() const
+{
+    return m_window ? m_window->filePath() : "";
+}
+
+bool MainWindowBridge::fileModified() const
+{
+    return true;
+}
+
+void MainWindowBridge::showOnBack()
+{
+
+}
+
+void MainWindowBridge::showOnFront()
+{
+
+}
+
+bool MainWindowBridge::isFullScreen() const
+{
+    return true;
+}
+
+void MainWindowBridge::toggleFullScreen()
+{
+
+}
+
+QScreen *MainWindowBridge::screen() const
+{
+    return nullptr;
+}
+
+void MainWindowBridge::init()
+{
+
 }

@@ -19,20 +19,18 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef LOG_H
-#define LOG_H
+#ifndef DOCK_INTERNAL_DOCKBASE_H
+#define DOCK_INTERNAL_DOCKBASE_H
 
-#include <QtCore/QDebug>
+#include <QtQuick/QQuickItem>
 
-#define LOGE qDebug
-#define LOGW qDebug
+namespace shira::dock {
 
-#define IF_ASSERT_FAILED_X(cond, msg) if (!(cond)) {                \
-    LOGE() << "\"ASSERT FAILED!\":" << msg << __FILE__ << __LINE__; \
-    Q_ASSERT(cond);                                                 \
-}                                                                   \
-    if (!(cond))
+class DockBase : public QQuickItem
+{
+    Q_OBJECT
+};
 
-#define IF_ASSERT_FAILED(cond) IF_ASSERT_FAILED_X(cond, #cond)
+}
 
-#endif // LOG_H
+#endif // DOCK_INTERNAL_DOCKBASE_H

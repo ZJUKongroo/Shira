@@ -26,9 +26,14 @@ set(MODULE_QML_IMPORT ${CMAKE_CURRENT_LIST_DIR}/qml)
 set(MODULE_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/internal/uiengine.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/internal/uiengine.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/internal/mainwindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/internal/mainwindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/view/mainwindowbridge.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/view/mainwindowbridge.h
     ${CMAKE_CURRENT_SOURCE_DIR}/uimodule.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/uimodule.h
     ${CMAKE_CURRENT_SOURCE_DIR}/iuiengine.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/imainwindow.h
 )
 
 set(MODULE_LINK shira::global)

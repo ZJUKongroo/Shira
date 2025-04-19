@@ -17,13 +17,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Qml)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Qml Quick)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(qt_components Core Gui Widgets Qml)
+set(qt_components Core Gui Widgets Qml Quick)
 
 foreach(component ${qt_components})
     list(APPEND QT_LIBRARIES ${Qt6${component}_LIBRARIES})

@@ -20,8 +20,20 @@
  */
 
 import QtQuick 2.15
-import QtQuick.Window 2.15
+import QtQuick.Controls 2.15
 
 ApplicationWindow {
+    id: root
 
+    objectName: "ApplicationWindow"
+
+    title: "Shira"
+
+    width: 1240
+    height: 720
+
+    minimumWidth: 800
+    minimumHeight: 600
+
+    visible: true
 }

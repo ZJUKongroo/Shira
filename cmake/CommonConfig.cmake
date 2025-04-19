@@ -20,6 +20,7 @@
 macro(declare_module name)
     set(MODULE ${name})
     unset(MODULE_ALIAS)
+    set(MODULE_ROOT ${CMAKE_CURRENT_SOURCE_DIR})
     unset(MODULE_SRC)
     unset(MODULE_QRC)
     unset(MODULE_DEF)
@@ -29,7 +30,7 @@ macro(declare_module name)
 endmacro()
 
 macro(add_qml_import_path input_var)
-    if (NOT ${${input_var}} STREQUAL "")
+    if(NOT ${${input_var}} STREQUAL "")
         set(QML_IMPORT_PATH "$CACHE{QML_IMPORT_PATH}")
         list(APPEND QML_IMPORT_PATH ${${input_var}})
         list(REMOVE_DUPLICATES QML_IMPORT_PATH)
@@ -43,7 +44,7 @@ macro(setup_module)
 
     add_library(${MODULE})
 
-    if (MODULE_ALIAS)
+    if(MODULE_ALIAS)
         add_library(${MODULE_ALIAS} ALIAS ${MODULE})
     endif()
 
@@ -62,6 +63,7 @@ macro(setup_module)
     )
 
     target_include_directories(${MODULE} PRIVATE
+        ${MODULE_ROOT}
         ${MODULE_INCLUDE}
         ${PROJECT_SOURCE_DIR}/src
 
@@ -71,7 +73,7 @@ macro(setup_module)
 
     target_link_libraries(${MODULE} PRIVATE ${MODULE_LINK} ${QT_LIBRARIES})
 
-    if (BUILD_SHARED_LIBS)
+    if(BUILD_SHARED_LIBS)
         install(TARGETS ${MODULE} DESTINATION ${SHARED_LIBS_INSTALL_DESTINATION})
     endif()
 endmacro()

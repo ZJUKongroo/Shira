@@ -19,42 +19,39 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GLOBAL_IAPPLICATION_H
-#define GLOBAL_IAPPLICATION_H
+#ifndef UI_IMAINWINDOW_H
+#define UI_IMAINWINDOW_H
 
-#include "types/string.h"
-#include "types/version.h"
-#include "modularity/context.h"
-#include "modularity/modulesioc.h"
 #include "modularity/imoduleinterface.h"
 
-namespace shira {
+class QScreen;
+class QWindow;
 
-class IApplication : MODULE_EXPORT_INTERFACE
+namespace shira::ui {
+
+class MainWindowBridge;
+
+class IMainWindow : MODULE_EXPORT_INTERFACE
 {
-    INTERFACE_ID(IApplication)
+    INTERFACE_ID(IMainWindow)
 
 public:
-    virtual ~IApplication() = default;
+    virtual ~IMainWindow() = default;
 
-    enum class RunMode {
-        GuiApp,
-        ConsoleApp,
-    };
+    virtual void init(MainWindowBridge *bridge) = 0;
+    virtual void deinit() = 0;
 
-    virtual String name() const = 0;
-    virtual String title() const = 0;
+    virtual QWindow *qWindow() const = 0;
 
-    virtual Version version() const = 0;
+    virtual void requestShowOnBack() = 0;
+    virtual void requestShowOnFront() = 0;
 
-    virtual void perform() = 0;
-    virtual void finish() = 0;
-    virtual void restart() = 0;
+    virtual bool isFullScreen() const = 0;
+    virtual void toggleFullScreen() = 0;
 
-    virtual const modularity::ContextPtr iocContext() const = 0;
-    virtual modularity::ModulesIoC *ioc() const = 0;
+    virtual QScreen *screen() const = 0;
 };
 
 }
 
-#endif // GLOBAL_IAPPLICATION_H
+#endif // UI_IMAINWINDOW_H

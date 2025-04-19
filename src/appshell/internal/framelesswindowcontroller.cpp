@@ -19,20 +19,28 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef LOG_H
-#define LOG_H
+#include "framelesswindowcontroller.h"
 
-#include <QtCore/QDebug>
+using namespace shira::appshell;
 
-#define LOGE qDebug
-#define LOGW qDebug
+void FramelessWindowController::init()
+{
+}
 
-#define IF_ASSERT_FAILED_X(cond, msg) if (!(cond)) {                \
-    LOGE() << "\"ASSERT FAILED!\":" << msg << __FILE__ << __LINE__; \
-    Q_ASSERT(cond);                                                 \
-}                                                                   \
-    if (!(cond))
+QRect FramelessWindowController::windowTitleBarMoveArea() const
+{
+    return m_windowTitleBarMoveArea;
+}
 
-#define IF_ASSERT_FAILED(cond) IF_ASSERT_FAILED_X(cond, #cond)
+void FramelessWindowController::setWindowTitleBarMoveArea(const QRect &area)
+{
+    m_windowTitleBarMoveArea = area;
+}
 
-#endif // LOG_H
+bool FramelessWindowController::nativeEventFilter(const QByteArray &eventType, void *message, qintptr *result)
+{
+    Q_UNUSED(eventType);
+    Q_UNUSED(message);
+    Q_UNUSED(result);
+    return true;
+}

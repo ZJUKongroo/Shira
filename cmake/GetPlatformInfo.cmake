@@ -17,25 +17,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-cmake_minimum_required(VERSION 3.16)
-
-project(Shira LANGUAGES CXX)
-
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
-
-set(CMAKE_INSTALL_PREFIX ..)
-
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
-
-set(SHIRA_FRAMEWORK_DIR ${CMAKE_CURRENT_LIST_DIR}/src/framework)
-
-include(BuildEnvironment)
-include(GetPlatformInfo)
-include(CheckPackages)
-include(CommonConfig)
-
-add_subdirectory(src)
-add_subdirectory(test)
+if(${CMAKE_HOST_SYSTEM_NAME} MATCHES "Windows")
+    set(OS_IS_WIN 1)
+elseif(${CMAKE_HOST_SYSTEM_NAME} MATCHES "Linux")
+    set(OS_IS_LIN 1)
+elseif(${CMAKE_HOST_SYSTEM_NAME} MATCHES "Darwin")
+    set(OS_IS_MAC 1)
+else()
+    message(FATAL_ERROR "Unsupported platform: ${CMAKE_HOST_SYSTEM_NAME}")
+endif()
