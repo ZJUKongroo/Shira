@@ -25,6 +25,7 @@
 #include <QtCore/QObject>
 
 #include "ui/iuiengine.h"
+#include "modularity/context.h"
 
 namespace shira::ui {
 
@@ -33,7 +34,7 @@ class UiEngine : public QObject, public IUiEngine
     Q_OBJECT
 
 public:
-    UiEngine();
+    UiEngine(const shira::modularity::ContextPtr &iocCtx);
     ~UiEngine() override;
 
     QQmlApplicationEngine *qmlAppEngine() const override;

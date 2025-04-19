@@ -18,5 +18,6 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 set(BUILD_SHARED_LIBS ON)
+set(SHARED_LIBS_INSTALL_DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
 
 add_compile_options(/Zc:__cplusplus /permissive-)

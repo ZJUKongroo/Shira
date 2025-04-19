@@ -24,6 +24,9 @@
 
 #include <string>
 
+#include "ioc.h"
+#include "iapplication.h"
+
 namespace shira::modularity {
 
 class IModuleSetup
@@ -47,6 +50,19 @@ public:
     virtual void onDestroy() {}
 
     virtual void onStartApp() {}
+
+    void setApplication(std::shared_ptr<IApplication> app)
+    {
+        m_application = app;
+    }
+
+    std::shared_ptr<IApplication> application() const { return m_application; }
+
+    const ContextPtr iocContext() const { return m_application ? m_application->iocContext() : globalCtx(); }
+    ModulesIoC *ioc() const { return m_application ? m_application->ioc() : globalIoc(); }
+
+protected:
+    std::shared_ptr<IApplication> m_application;
 };
 
 }

@@ -35,11 +35,13 @@ set(MODULE_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/modularity/modulesioc.h
     ${CMAKE_CURRENT_SOURCE_DIR}/modularity/ioc.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/modularity/ioc.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/internal/baseapplication.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/internal/baseapplication.h
     ${CMAKE_CURRENT_SOURCE_DIR}/containers.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/baseapplication.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/baseapplication.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/log.h
     ${CMAKE_CURRENT_SOURCE_DIR}/globalmodule.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/globalmodule.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/iapplication.h
 )
 
 setup_module()

@@ -23,7 +23,7 @@
 
 using namespace shira::ui;
 
-UiEngine::UiEngine()
+UiEngine::UiEngine(const shira::modularity::ContextPtr &iocCtx)
 {
     m_engine = new QQmlApplicationEngine(this);
 }

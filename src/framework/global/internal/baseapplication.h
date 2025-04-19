@@ -19,8 +19,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef BASEAPPLICATION_H
-#define BASEAPPLICATION_H
+#ifndef INTERNAL_BASEAPPLICATION_H
+#define INTERNAL_BASEAPPLICATION_H
 
 #include "iapplication.h"
 #include "modularity/ioc.h"
@@ -32,6 +32,8 @@ namespace shira {
 class BaseApplication : public IApplication
 {
 public:
+    BaseApplication(const modularity::ContextPtr &ctx);
+
     static String appName();
     static String appTitle();
     static Version appVersion();
@@ -39,6 +41,8 @@ public:
     String name() const override { return appName(); }
     String title() const override { return appTitle(); }
     Version version() const override { return appVersion(); }
+
+    void restart() override;
 
     const modularity::ContextPtr iocContext() const override;
     modularity::ModulesIoC *ioc() const override;
@@ -49,4 +53,4 @@ private:
 
 }
 
-#endif // BASEAPPLICATION_H
+#endif // INTERNAL_BASEAPPLICATION_H

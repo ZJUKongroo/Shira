@@ -19,32 +19,19 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "baseapplication.h"
+#ifndef LOG_H
+#define LOG_H
 
-using namespace shira;
+#include <QtCore/QDebug>
 
-String BaseApplication::appName()
-{
-    return String();
-}
+#define LOGE qDebug
 
-String BaseApplication::appTitle()
-{
-    return String();
-}
+#define IF_ASSERT_FAILED_X(cond, msg) if (!(cond)) {                \
+    LOGE() << "\"ASSERT FAILED!\":" << msg << __FILE__ << __LINE__; \
+    Q_ASSERT(cond);                                                 \
+}                                                                   \
+    if (!(cond))
 
-Version BaseApplication::appVersion()
-{
-    static Version v("0.0.0");
-    return v;
-}
+#define IF_ASSERT_FAILED(cond) IF_ASSERT_FAILED_X(cond, #cond)
 
-const modularity::ContextPtr BaseApplication::iocContext() const
-{
-    return m_iocContext;
-}
-
-modularity::ModulesIoC *BaseApplication::ioc() const
-{
-    return modularity::_ioc(m_iocContext);
-}
+#endif // LOG_H

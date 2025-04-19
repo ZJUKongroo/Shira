@@ -31,4 +31,6 @@ set(MODULE_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/iuiengine.h
 )
 
+set(MODULE_LINK shira::global)
+
 setup_module()

@@ -21,6 +21,7 @@ macro(declare_module name)
     set(MODULE ${name})
     unset(MODULE_ALIAS)
     unset(MODULE_SRC)
+    unset(MODULE_QRC)
     unset(MODULE_DEF)
     unset(MODULE_INCLUDE)
     unset(MODULE_LINK)
@@ -48,7 +49,12 @@ macro(setup_module)
 
     add_qml_import_path(MODULE_QML_IMPORT)
 
-    target_sources(${MODULE} PRIVATE ${MODULE_SRC})
+    qt_add_resources(RCC_SOURCES ${MODULE_QRC})
+
+    target_sources(${MODULE} PRIVATE
+        ${RCC_SOURCES}
+        ${MODULE_SRC}
+    )
 
     target_compile_definitions(${MODULE} PUBLIC
         ${MODULE_DEF}
@@ -64,4 +70,8 @@ macro(setup_module)
     )
 
     target_link_libraries(${MODULE} PRIVATE ${MODULE_LINK} ${QT_LIBRARIES})
+
+    if (BUILD_SHARED_LIBS)
+        install(TARGETS ${MODULE} DESTINATION ${SHARED_LIBS_INSTALL_DESTINATION})
+    endif()
 endmacro()

@@ -41,7 +41,10 @@ std::shared_ptr<shira::IApplication> AppFactory::newConsoleApp() const
 
 std::shared_ptr<shira::IApplication> AppFactory::newGuiApp() const
 {
-    std::shared_ptr<GuiApp> app = std::make_shared<GuiApp>();
+    shira::modularity::ContextPtr ctx = std::make_shared<shira::modularity::Context>();
+    ctx->id = -1;
+
+    std::shared_ptr<GuiApp> app = std::make_shared<GuiApp>(ctx);
 
     app->addModule(new shira::GlobalModule());
     app->addModule(new shira::appshell::AppShellModule());

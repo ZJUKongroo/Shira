@@ -42,3 +42,8 @@ target_include_directories(Shira PRIVATE
 )
 
 target_link_libraries(Shira PRIVATE ${LINK_LIB})
+
+install(TARGETS Shira
+    RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
+    BUNDLE  DESTINATION ${CMAKE_INSTALL_PREFIX}
+)

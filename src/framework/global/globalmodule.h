@@ -23,6 +23,7 @@
 #define GLOBAL_GLOBALMODULE_H
 
 #include "modularity/imodulesetup.h"
+#include "internal/baseapplication.h"
 
 namespace shira {
 
@@ -30,6 +31,8 @@ class GlobalModule : public modularity::IModuleSetup
 {
 public:
     std::string moduleName() const override;
+
+    void registerExports() override;
 };
 
 }

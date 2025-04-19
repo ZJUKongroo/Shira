@@ -22,14 +22,21 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
 
-AppWindow {
-    id: root
+// AppWindow {
+//     id: root
 
-    AppTitleBar {
+//     AppTitleBar {
+//         id: appTitleBar
+//     }
 
-    }
+//     WindowContent {
+//         id: window
+//     }
+// }
 
-    WindowContent {
-
-    }
+Window {
+    width: 1280
+    height: 720
+    visible: true
+    title: "QmlTest"
 }

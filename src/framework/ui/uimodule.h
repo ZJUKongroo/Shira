@@ -23,6 +23,7 @@
 #define UI_UIMODULE_H
 
 #include "modularity/imodulesetup.h"
+#include "internal/uiengine.h"
 
 namespace shira::ui {
 
@@ -30,6 +31,11 @@ class UiModule : public modularity::IModuleSetup
 {
 public:
     std::string moduleName() const override;
+
+    void registerExports() override;
+
+private:
+    std::shared_ptr<UiEngine> m_uiengine;
 };
 
 }

@@ -23,12 +23,15 @@
 
 #include <QtCore/QString>
 #include <QtCore/QUrl>
+#include <QtWidgets/QApplication>
 
+#include "global/log.h"
 #include "ui/iuiengine.h"
 
 using namespace shira::app;
 
-GuiApp::GuiApp()
+GuiApp::GuiApp(const shira::modularity::ContextPtr &ctx)
+    : shira::BaseApplication(ctx)
 {
 }
 
@@ -39,10 +42,33 @@ void GuiApp::addModule(shira::modularity::IModuleSetup *module)
 
 void GuiApp::perform()
 {
+    for (shira::modularity::IModuleSetup *m : m_modules) {
+        m->registerExports();
+    }
+
     QQmlApplicationEngine *engine = ioc()->resolve<shira::ui::IUiEngine>("app")->qmlAppEngine();
 
     const QString mainQmlFile = "/Main.qml";
-    const QUrl url(QString(appshell_QML_IMPORT) + mainQmlFile);
+    const QUrl url(QStringLiteral("qrc:/qml") + mainQmlFile);
+
+    QObject::connect(engine, &QQmlApplicationEngine::objectCreated,
+                     qApp, [url](QObject *object, const QUrl &objUrl) {
+        if (!object && url == objUrl) {
+            LOGE() << "failed Qml load\n";
+            QCoreApplication::exit(-1);
+            return;
+        }
+    }, Qt::QueuedConnection);
 
     engine->load(url);
+}
+
+void GuiApp::finish()
+{
+
+}
+
+void GuiApp::restart()
+{
+
 }

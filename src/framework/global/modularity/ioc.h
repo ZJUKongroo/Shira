@@ -33,6 +33,17 @@ static std::map<IoCID, ModulesIoC *> s_map;
 
 ModulesIoC *_ioc(const ContextPtr &ctx = nullptr);
 
+inline ModulesIoC *globalIoc()
+{
+    return _ioc(nullptr);
+}
+
+inline ContextPtr globalCtx()
+{
+    static ContextPtr ctx = std::make_shared<Context>();
+    return ctx;
+}
+
 }
 
 #endif // GLOBAL_MODULARITY_IOC_H

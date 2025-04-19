@@ -21,17 +21,7 @@
 
 #include "types/string.h"
 
-#include <QtCore/QDebug>
-
-#define LOGE qDebug
-
-#define IF_ASSERT_FAILED_X(cond, msg) if (!(cond)) {                \
-    LOGE() << "\"ASSERT FAILED!\":" << msg << __FILE__ << __LINE__; \
-    Q_ASSERT(cond);                                                 \
-}                                                                   \
-    if (!(cond))
-
-#define IF_ASSERT_FAILED(cond) IF_ASSERT_FAILED_X(cond, #cond)
+#include "global/log.h"
 
 using namespace shira;
 

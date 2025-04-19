@@ -30,7 +30,7 @@
 
 namespace shira {
 
-class IApplication : MODULE_EXPORT_INTERFACE
+class IApplication : public MODULE_EXPORT_INTERFACE
 {
     INTERFACE_ID(IApplication)
 
@@ -46,6 +46,10 @@ public:
     virtual String title() const = 0;
 
     virtual Version version() const = 0;
+
+    virtual void perform() = 0;
+    virtual void finish() = 0;
+    virtual void restart() = 0;
 
     virtual const modularity::ContextPtr iocContext() const = 0;
     virtual modularity::ModulesIoC *ioc() const = 0;

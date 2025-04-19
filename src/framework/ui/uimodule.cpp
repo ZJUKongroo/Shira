@@ -27,3 +27,10 @@ std::string UiModule::moduleName() const
 {
     return "ui";
 }
+
+void UiModule::registerExports()
+{
+    m_uiengine = std::make_shared<UiEngine>(iocContext());
+
+    ioc()->registerExport(moduleName(), m_uiengine);
+}

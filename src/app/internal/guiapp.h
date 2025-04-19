@@ -24,7 +24,7 @@
 
 #include <vector>
 
-#include "global/baseapplication.h"
+#include "internal/baseapplication.h"
 #include "modularity/modulesioc.h"
 #include "modularity/imodulesetup.h"
 
@@ -33,10 +33,13 @@ namespace shira::app {
 class GuiApp : public shira::BaseApplication
 {
 public:
-    GuiApp();
+    GuiApp(const shira::modularity::ContextPtr &ctx);
 
     void addModule(shira::modularity::IModuleSetup *module);
-    void perform();
+
+    void perform() override;
+    void finish() override;
+    void restart() override;
 
 private:
     std::vector<shira::modularity::IModuleSetup *> m_modules;

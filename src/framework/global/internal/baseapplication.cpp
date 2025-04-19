@@ -19,23 +19,42 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QtWidgets/QApplication>
+#include "baseapplication.h"
 
-#include "appfactory.h"
+using namespace shira;
 
-using namespace shira::app;
-
-int main(int argc, char *argv[])
+BaseApplication::BaseApplication(const modularity::ContextPtr &ctx)
+    : m_iocContext(ctx)
 {
-    QApplication app(argc, argv);
-    QCoreApplication::setApplicationName("Shira");
-    QCoreApplication::setOrganizationName("Shira");
-    QCoreApplication::setApplicationVersion("1.0.0");
+}
 
-    AppFactory f;
-    std::shared_ptr<shira::IApplication> shiraApp = f.newApp();
+String BaseApplication::appName()
+{
+    return String();
+}
 
-    shiraApp->perform();
+String BaseApplication::appTitle()
+{
+    return String();
+}
 
-    return app.exec();
+Version BaseApplication::appVersion()
+{
+    static Version v("0.0.0");
+    return v;
+}
+
+void BaseApplication::restart()
+{
+
+}
+
+const modularity::ContextPtr BaseApplication::iocContext() const
+{
+    return m_iocContext;
+}
+
+modularity::ModulesIoC *BaseApplication::ioc() const
+{
+    return modularity::_ioc(m_iocContext);
 }

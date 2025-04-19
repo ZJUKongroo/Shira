@@ -23,7 +23,26 @@
 
 using namespace shira;
 
+class ApplicationStub : public BaseApplication
+{
+public:
+    ApplicationStub()
+        : BaseApplication(std::make_shared<modularity::Context>()) {}
+
+    void perform() override {}
+    void finish() override {}
+};
+
 std::string GlobalModule::moduleName() const
 {
     return "global";
+}
+
+void GlobalModule::registerExports()
+{
+    if (!m_application) {
+        m_application = std::make_shared<ApplicationStub>();
+    }
+
+    ioc()->registerExport<IApplication>(moduleName(), m_application);
 }
