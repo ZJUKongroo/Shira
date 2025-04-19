@@ -24,6 +24,7 @@ set(MODULE_ALIAS shira::dock)
 set(MODULE_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/internal/dockbase.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/internal/dockbase.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/docktypes.h
     ${CMAKE_CURRENT_SOURCE_DIR}/dockmodule.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/dockmodule.h
     ${CMAKE_CURRENT_SOURCE_DIR}/idockwindow.h
