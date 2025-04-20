@@ -35,6 +35,13 @@ set(MODULE_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/modularity/modulesioc.h
     ${CMAKE_CURRENT_SOURCE_DIR}/modularity/ioc.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/modularity/ioc.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/async/internal/abstractinvoker.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/async/internal/abstractinvoker.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/async/internal/asyncimpl.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/async/internal/asyncimpl.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/async/internal/queuedinvoker.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/async/internal/queuedinvoker.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/async/asyncable.h
     ${CMAKE_CURRENT_SOURCE_DIR}/internal/baseapplication.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/internal/baseapplication.h
     ${CMAKE_CURRENT_SOURCE_DIR}/containers.h

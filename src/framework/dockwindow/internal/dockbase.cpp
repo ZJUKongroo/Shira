@@ -23,7 +23,7 @@
 
 using namespace shira::dock;
 
-DockBase::DockBase(DockType type, QQuickItem* parnet)
+DockBase::DockBase(DockType type, QQuickItem* parent)
 	: QQuickItem(parent)
 {
 	Q_ASSERT(type != DockType::Undefined);
@@ -127,22 +127,22 @@ void DockBase::resetToDefault()
 
 bool DockBase::isOpen()
 {
-
+	return true;
 }
 
 bool DockBase::open()
 {
-
+	return true;
 }
 
 bool DockBase::close()
 {
-
+	return true;
 }
 
 bool DockBase::resize(int width, int height)
 {
-
+	return true;
 }
 
 void DockBase::setTitle(const QString& title)
@@ -221,7 +221,7 @@ void DockBase::setLocation(int location)
 		return;
 	}
 
-	m_properties.location = location;
+	m_properties.location = static_cast<Location>(location);
 	emit locationChanged();
 }
 

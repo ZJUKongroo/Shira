@@ -23,6 +23,7 @@
 #define DOCK_DOCKTYPES_H
 
 #include <QtCore/QObject>
+#include <QtCore/QRect>
 
 namespace shira::dock {
 
