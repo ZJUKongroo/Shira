@@ -21,13 +21,14 @@
 
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import Shira.AppShell 1.0
 
 ApplicationWindow {
     id: root
 
     objectName: "ApplicationWindow"
 
-    title: "Shira"
+    title: titleProvider.title
 
     width: 1240
     height: 720
@@ -36,4 +37,12 @@ ApplicationWindow {
     minimumHeight: 600
 
     visible: true
+
+    Component.onCompleted: {
+        titleProvider.load()
+    }
+
+    MainWindowTitleProvider {
+        id: titleProvider
+    }
 }

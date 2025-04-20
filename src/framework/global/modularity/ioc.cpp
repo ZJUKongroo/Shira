@@ -20,6 +20,7 @@
  */
 
 #include "ioc.h"
+#include "log.h"
 
 using namespace shira::modularity;
 
@@ -36,4 +37,50 @@ ModulesIoC *shira::modularity::_ioc(const ContextPtr &ctx)
     }
 
     return s_map.insert({ ctx->id, new ModulesIoC() }).first->second;
+}
+
+void shira::modularity::removeIoC(const ContextPtr &ctx)
+{
+	if (!ctx || ctx->id < 0) {
+		return;
+	}
+	
+	auto it = s_map.find(ctx->id);
+	if (it != s_map.end()) {
+		s_map.erase(it);
+	}
+}
+
+Injectable::GetContext shira::modularity::iocCtxForQmlObject(const QObject *o)
+{
+	return [o]() {
+		const QObject *p = o;
+		QQmlEngine *engine = qmlEngine(p);
+		while (!engine && p->parent()) {
+			p = p->parent();
+			engine = qmlEngine(p);
+		}
+
+		IF_ASSERT_FAILED(engine) {
+			return ContextPtr();
+		}
+
+		return iocCtxForQmlEngine(engine);
+	};
+}
+
+ContextPtr shira::modularity::iocCtxForQmlEngine(const QQmlEngine *e)
+{
+	QmlIoCContext *qmlIoc = e->property("ioc_context").value<QmlIoCContext *>();
+
+	if (!qmlIoc) {
+		return ContextPtr();
+	}
+
+	return qmlIoc->ctx;
+}
+
+ContextPtr shira::modularity::iocCtxForQWidget(const QWidget *o)
+{
+	return ContextPtr();
 }

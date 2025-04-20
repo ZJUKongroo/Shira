@@ -22,6 +22,9 @@ set(LINK_LIB
     appshell
     shira::global
     shira::ui
+    shira::ui_components
+    shira::dock
+    shira::actions
 )
 
 add_executable(Shira)

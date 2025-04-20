@@ -26,6 +26,9 @@
 #include "appshell/appshellmodule.h"
 #include "framework/global/globalmodule.h"
 #include "framework/ui/uimodule.h"
+#include "framework/uicomponents/uicomponentsmodule.h"
+#include "framework/dockwindow/dockmodule.h"
+#include "framework/actions/actionsmodule.h"
 
 using namespace shira::app;
 
@@ -49,6 +52,9 @@ std::shared_ptr<shira::IApplication> AppFactory::newGuiApp() const
     app->addModule(new shira::GlobalModule());
     app->addModule(new shira::appshell::AppShellModule());
     app->addModule(new shira::ui::UiModule());
+	app->addModule(new shira::uicomponents::UiComponentsModule());
+	app->addModule(new shira::dock::DockModule());
+	app->addModule(new shira::actions::ActionsModule());
 
     return app;
 }

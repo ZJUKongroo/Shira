@@ -28,6 +28,8 @@ set(MODULE_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/internal/framelesswindowcontroller.h
     ${CMAKE_CURRENT_SOURCE_DIR}/view/framelesswindowmodel.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/view/framelesswindowmodel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/view/mainwindowtitleprovider.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/view/mainwindowtitleprovider.h
     ${CMAKE_CURRENT_SOURCE_DIR}/appshellmodule.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/appshellmodule.h
 )
@@ -38,5 +40,7 @@ if(OS_IS_WIN)
         ${CMAKE_CURRENT_SOURCE_DIR}/internal/platform/win/winframelesswindowcontroller.h
     )
 endif()
+
+set(MODULE_LINK shira::global)
 
 setup_module()

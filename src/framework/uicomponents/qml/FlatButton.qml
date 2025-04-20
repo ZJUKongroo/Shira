@@ -20,28 +20,10 @@
  */
 
 import QtQuick 2.15
-import QtQuick.Window 2.15
+import QtQuick.Layouts 1.15
 
-Rectangle {
+FocusScope {
     id: root
 
-    RowLayout {
-        id: content
-
-        anchors.left: parent.left
-        anchors.right: parent.right
-
-        spacing: 8
-
-        // AppMenuBar {
-        //     id: menu
-        // }
-
-        StyledTextLabel {
-            id: titleLabel
-
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-        }
-    }
+    property int icon: IconCode.NONE
 }

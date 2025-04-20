@@ -21,9 +21,26 @@
 
 #include "appshellmodule.h"
 
+#include "view/mainwindowtitleprovider.h"
+
 using namespace shira::appshell;
 
 std::string AppShellModule::moduleName() const
 {
     return "appshell";
+}
+
+void AppShellModule::registerExports()
+{
+
+}
+
+void AppShellModule::registerUiTypes()
+{
+	qmlRegisterType<MainWindowTitleProvider>("Shira.AppShell", 1, 0, "MainWindowTitleProvider");
+}
+
+void AppShellModule::onInit()
+{
+
 }

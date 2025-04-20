@@ -46,6 +46,10 @@ void GuiApp::perform()
         m->registerExports();
     }
 
+	for (shira::modularity::IModuleSetup *m : m_modules) {
+		m->registerUiTypes();
+	}
+
     QQmlApplicationEngine *engine = ioc()->resolve<shira::ui::IUiEngine>("app")->qmlAppEngine();
 
     const QString mainQmlFile = "/Main.qml";
