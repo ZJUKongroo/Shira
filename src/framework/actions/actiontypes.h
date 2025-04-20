@@ -19,16 +19,15 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "uicomponentsmodule.h"
+#ifndef ACTIONS_ACTIONTYPES_H
+#define ACTIONS_ACTIONTYPES_H
 
-using namespace shira::uicomponents;
+#include <string>
 
-std::string UiComponentsModule::moduleName() const
-{
-	return "uicomponents";
-}
+namespace shira::actions {
 
-void UiComponentsModule::onInit()
-{
+using ActionCode = std::string;
 
 }
+
+#endif // ACTIONS_ACTIONTYPES_H

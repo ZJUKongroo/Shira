@@ -17,26 +17,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-declare_module(shira_ui)
+declare_module(shira_actions)
 
-set(MODULE_ALIAS shira::ui)
-
-set(MODULE_QML_IMPORT ${CMAKE_CURRENT_LIST_DIR}/qml)
+set(MODULE_ALIAS shira::actions)
 
 set(MODULE_SRC
-    ${CMAKE_CURRENT_SOURCE_DIR}/internal/uiengine.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/internal/uiengine.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/internal/mainwindow.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/internal/mainwindow.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/view/mainwindowbridge.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/view/mainwindowbridge.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/uimodule.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/uimodule.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/uiaction.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/iuiengine.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/imainwindow.h
+    actionsmodule.cpp
+    actionsmodule.h
+    actiontypes.h
 )
-
-set(MODULE_LINK shira::global)
 
 setup_module()

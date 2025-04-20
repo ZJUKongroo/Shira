@@ -29,6 +29,8 @@ namespace shira::uicomponents {
 class UiComponentsModule : public shira::modularity::IModuleSetup
 {
 public:
+	std::string moduleName() const override;
+
 	void onInit() override;
 };
 

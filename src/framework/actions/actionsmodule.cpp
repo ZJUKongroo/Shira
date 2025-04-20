@@ -19,16 +19,16 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "uicomponentsmodule.h"
+#include "actionsmodule.h"
 
-using namespace shira::uicomponents;
+using namespace shira::actions;
 
-std::string UiComponentsModule::moduleName() const
+std::string ActionsModule::moduleName() const
 {
-	return "uicomponents";
+	return "actions";
 }
 
-void UiComponentsModule::onInit()
+void ActionsModule::onInit()
 {
 
 }

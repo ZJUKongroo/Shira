@@ -19,16 +19,21 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "uicomponentsmodule.h"
+#ifndef ACTIONS_ACTIONSMODULE_H
+#define ACTIONS_ACTIONSMODULE_H
 
-using namespace shira::uicomponents;
+#include "modularity/imodulesetup.h"
 
-std::string UiComponentsModule::moduleName() const
+namespace shira::actions {
+
+class ActionsModule : public shira::modularity::IModuleSetup
 {
-	return "uicomponents";
+public:
+	std::string moduleName() const override;
+
+	void onInit() override;
+};
+
 }
 
-void UiComponentsModule::onInit()
-{
-
-}
+#endif // ACTIONS_ACTIONSMODULE_H
