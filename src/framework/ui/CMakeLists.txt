@@ -28,6 +28,14 @@ set(MODULE_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/internal/uiengine.h
     ${CMAKE_CURRENT_SOURCE_DIR}/internal/mainwindow.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/internal/mainwindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/view/abstractnavigation.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/view/abstractnavigation.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/view/navigationsection.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/view/navigationsection.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/view/navigationpanel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/view/navigationpanel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/view/navigationcontrol.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/view/navigationcontrol.h
     ${CMAKE_CURRENT_SOURCE_DIR}/view/mainwindowbridge.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/view/mainwindowbridge.h
     ${CMAKE_CURRENT_SOURCE_DIR}/uimodule.cpp
@@ -35,6 +43,7 @@ set(MODULE_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/uiaction.h
     ${CMAKE_CURRENT_SOURCE_DIR}/iuiengine.h
     ${CMAKE_CURRENT_SOURCE_DIR}/imainwindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/inavigation.h
 )
 
 set(MODULE_LINK shira::global)
