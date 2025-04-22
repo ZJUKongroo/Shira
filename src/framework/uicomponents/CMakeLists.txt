@@ -28,6 +28,12 @@ set(MODULE_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/view/menuitem.h
     ${CMAKE_CURRENT_SOURCE_DIR}/view/popupview.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/view/popupview.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/view/menuview.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/view/menuview.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/view/dialogview.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/view/dialogview.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/view/dropdownview.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/view/dropdownview.h
     ${CMAKE_CURRENT_SOURCE_DIR}/uicomponentsmodule.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/uicomponentsmodule.h
 )
