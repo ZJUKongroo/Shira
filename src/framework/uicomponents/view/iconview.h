@@ -19,46 +19,41 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef UICOMPONENTS_VIEW_DIALOGVIEW_H
-#define UICOMPONENTS_VIEW_DIALOGVIEW_H
+#ifndef UICOMPONENTS_VIEW_ICONVIEW_H
+#define UICOMPONENTS_VIEW_ICONVIEW_H
 
-#include "popupview.h"
+#include <QtGui/QIcon>
 
-#include "modularity/ioc.h"
+#include "quickpaintedview.h"
 
 namespace shira::uicomponents {
 
-class DialogView : public PopupView
+class IconView : public QuickPaintedView
 {
 	Q_OBJECT
 
-	// shira::Inject<IApplication> application;
-
 public:
-	explicit DialogView(QQuickItem *parent = nullptr);
-	~DialogView() override = default;
+	IconView(QQuickItem *parent = nullptr);
 
-	// Q_INVOKABLE void exec();
-	// Q_INVOKABLE void show();
-	// Q_INVOKABLE void hide();
-	// Q_INVOKABLE void raise();
-	// Q_INVOKABLE void accept();
-	// Q_INVOKABLE void reject(int code = -1);
+	QVariant icon() const;
+	QColor backgroundColor() const;
+
+public slots:
+	void setIcon(QVariant val);
+	void setBackgroundColor(const QColor &color);
+
+signals:
+	void iconChanged(const QVariant &icon);
+	void backgroundColorChanged(const QColor &color);
 
 private:
-	// bool isDialog() const override;
-	// void beforeOpen() override;
-	// void onHidden() override;
+	void paint(QPainter *) override;
 
-	// QScreen *resolveScreen() const override;
-
-	// void updateGeometry() override;
-
-	// QRect viewGeometry() const override;
-
-	QEventLoop m_loop;
+	QColor m_color;
+	QColor m_backgroundColor;
+	QIcon m_icon;
 };
 
 }
 
-#endif // UICOMPONENTS_VIEW_DIALOGVIEW_H
+#endif // UICOMPONENTS_VIEW_ICONVIEW_H

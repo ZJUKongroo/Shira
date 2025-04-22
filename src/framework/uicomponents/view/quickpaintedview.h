@@ -19,46 +19,24 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef UICOMPONENTS_VIEW_DIALOGVIEW_H
-#define UICOMPONENTS_VIEW_DIALOGVIEW_H
+#ifndef UICOMPONENTS_VIEW_QUICKPAINTEDVIEW_H
+#define UICOMPONENTS_VIEW_QUICKPAINTEDVIEW_H
 
-#include "popupview.h"
-
-#include "modularity/ioc.h"
+#include <QtQuick/QQuickPaintedItem>
 
 namespace shira::uicomponents {
 
-class DialogView : public PopupView
+class QuickPaintedView : public QQuickPaintedItem
 {
 	Q_OBJECT
 
-	// shira::Inject<IApplication> application;
-
 public:
-	explicit DialogView(QQuickItem *parent = nullptr);
-	~DialogView() override = default;
+	QuickPaintedView(QQuickItem *parent = nullptr);
 
-	// Q_INVOKABLE void exec();
-	// Q_INVOKABLE void show();
-	// Q_INVOKABLE void hide();
-	// Q_INVOKABLE void raise();
-	// Q_INVOKABLE void accept();
-	// Q_INVOKABLE void reject(int code = -1);
-
-private:
-	// bool isDialog() const override;
-	// void beforeOpen() override;
-	// void onHidden() override;
-
-	// QScreen *resolveScreen() const override;
-
-	// void updateGeometry() override;
-
-	// QRect viewGeometry() const override;
-
-	QEventLoop m_loop;
+protected:
+	QSGNode *updatePaintNode(QSGNode *old, UpdatePaintNodeData *data) override;
 };
 
 }
 
-#endif // UICOMPONENTS_VIEW_DIALOGVIEW_H
+#endif // UICOMPONENTS_VIEW_QUICKPAINTEDVIEW_H

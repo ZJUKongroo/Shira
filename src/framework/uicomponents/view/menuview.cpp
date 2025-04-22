@@ -52,7 +52,7 @@ void MenuView::setContentWidth(int newContentWidth)
 		return;
 	}
 
-	m_contentWidth == newContentWidth;
+	m_contentWidth = newContentWidth;
 	emit contentWidthChanged();
 }
 
@@ -67,13 +67,23 @@ void MenuView::setContentHeight(int newContentHeight)
 		return;
 	}
 
-	m_contentHeight == newContentHeight;
+	m_contentHeight = newContentHeight;
 	emit contentHeightChanged();
+}
+
+void MenuView::setCascadeAlign(Qt::AlignmentFlag cascadeAlign)
+{
+	if (cascadeAlign == m_cascadeAlign) {
+		return;
+	}
+
+	m_cascadeAlign = cascadeAlign;
+	emit cascadeAlignChanged(m_cascadeAlign);
 }
 
 void MenuView::componentComplete()
 {
 	m_contentItem->setObjectName(m_contentItem->objectName() + MENU_VIEW_CONTENT_OBJECT_NAME);
 
-	PopupView::componentComplete();
+	// PopupView::componentComplete();
 }

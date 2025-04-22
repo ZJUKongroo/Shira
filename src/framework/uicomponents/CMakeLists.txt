@@ -34,6 +34,12 @@ set(MODULE_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/view/dialogview.h
     ${CMAKE_CURRENT_SOURCE_DIR}/view/dropdownview.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/view/dropdownview.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/view/iconview.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/view/iconview.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/view/quickpaintedview.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/view/quickpaintedview.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/view/widgetview.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/view/widgetview.h
     ${CMAKE_CURRENT_SOURCE_DIR}/uicomponentsmodule.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/uicomponentsmodule.h
 )
