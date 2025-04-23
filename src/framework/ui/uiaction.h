@@ -69,7 +69,7 @@ enum class Checkable {
 struct UiAction
 {
 	shira::actions::ActionCode code;
-	UiContext uiCtx = uiCtxAny;
+	UiContext uiCtx = UiCtxAny;
 	std::string scCtx = "any";
 	Checkable checkable = Checkable::No;
 

@@ -31,6 +31,8 @@
 #include <memory>
 #include <string>
 
+#include <QtCore/QString>
+
 namespace shira {
 
 enum CaseSensitivity {
@@ -135,6 +137,20 @@ public:
     String(const Char &ch);
     String(const Char *unicode, std::size_t size = nidx);
 
+#ifndef NO_QT_SUPPORT
+    String(const QString &str) { *this = fromQString(str); }
+    operator QString() const {
+        return this->toQString();
+    }
+
+    String &operator=(const QString &str) { *this = fromQString(str); return *this; }
+    static String fromQString(const QString &str);
+	QString toQString() const;
+
+	inline bool operator==(const QString &s) const { return toQString() == s; }
+	inline bool operator!=(const QString &s) const { return !operator==(s); }
+#endif
+
     String &operator=(const char16_t *str);
     void reserve(std::size_t i);
 
@@ -165,6 +181,10 @@ public:
     String &append(const String &s);
     String &prepend(Char ch);
     String &prepend(const String &s);
+
+	static String fromUtf8(const char *str);
+	static String fromUtf8(const ByteArray &data);
+	ByteArray toUtf8() const;
 
     static String fromAscii(const char *str, std::size_t size = nidx);
     ByteArray toAscii(bool *ok = nullptr) const;

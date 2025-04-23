@@ -122,6 +122,25 @@ struct String::Mutator
     char16_t &operator[](std::size_t i) { return s.operator[](i); }
 };
 
+#ifndef NO_QT_SUPPORT
+String String::fromQString(const QString &str)
+{
+	const QChar *qu = str.unicode();
+	static_assert(sizeof(QChar) == sizeof(char16_t));
+	const char16_t *u = reinterpret_cast<const char16_t *>(qu);
+
+	String s;
+	s.mutStr() = std::u16string(u, u + str.size());
+	return s;
+}
+
+QString String::toQString() const
+{
+	static_assert(sizeof(QChar) == sizeof(char16_t));
+	return QString(reinterpret_cast<const QChar *>(constStr().data()), static_cast<int>(size()));
+}
+#endif
+
 String::Mutator String::mutStr(bool do_detach)
 {
     if (do_detach) {
@@ -254,6 +273,38 @@ ByteArray String::toAscii(bool *ok) const
         ba[i] = static_cast<std::uint8_t>(ch);
     }
     return ba;
+}
+
+String String::fromUtf8(const char *str)
+{
+	if (!str) {
+		return String();
+	}
+	String s;
+	UtfCodec::utf8to16(std::string_view(str), s.mutStr());
+	return s;
+}
+
+String String::fromUtf8(const ByteArray &data)
+{
+	if (data.empty()) {
+		return String();
+	}
+	String s;
+	UtfCodec::utf8to16(std::string_view(data.constChar(), data.size()), s.mutStr());
+	return s;
+}
+
+ByteArray String::toUtf8() const
+{
+	ByteArray ba;
+	std::u16string_view v(constStr());
+	try {
+		// utf8::utf16to8(v.begin(), v.end(), std::back_inserter(ba));
+	} catch (const std::exception &e) {
+		LOGE() << e.what();
+	}
+	return ba;
 }
 
 String String::fromStdString(const std::string &str)
