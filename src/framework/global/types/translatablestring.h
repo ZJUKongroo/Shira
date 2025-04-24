@@ -175,7 +175,7 @@ struct TranslatableString::Arg : public TranslatableString::IArg
 	{
 		if constexpr (std::is_same_v<T, TranslatableString>) {
 			return t.qTranslated();
-		} else constexpr (std::is_same_v<T, String>) {
+		} else if constexpr (std::is_same_v<T, String>) {
 			return t.toQString();
 		} else {
 			return t;

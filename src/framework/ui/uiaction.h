@@ -81,6 +81,14 @@ struct UiAction
 	{
 		return !code.empty();
 	}
+
+	bool operator==(const UiAction &other) const
+	{
+		return code == other.code
+			   && uiCtx == other.uiCtx
+			   && scCtx == other.scCtx
+			   && checkable == other.checkable;
+	}
 };
 
 struct UiActionState

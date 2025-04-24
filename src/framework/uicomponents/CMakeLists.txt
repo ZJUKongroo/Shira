@@ -24,6 +24,8 @@ set(MODULE_ALIAS shira::ui_components)
 set(MODULE_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/view/abstractmenumodel.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/view/abstractmenumodel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/view/abstracttoolbarmodel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/view/abstracttoolbarmodel.h
     ${CMAKE_CURRENT_SOURCE_DIR}/view/toolbaritem.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/view/toolbaritem.h
     ${CMAKE_CURRENT_SOURCE_DIR}/view/menuitem.cpp
