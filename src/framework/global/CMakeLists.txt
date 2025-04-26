@@ -27,6 +27,7 @@ set(MODULE_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/types/string.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/types/string.h
     ${CMAKE_CURRENT_SOURCE_DIR}/types/translatablestring.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/types/flags.h
     ${CMAKE_CURRENT_SOURCE_DIR}/types/version.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/types/version.h
     ${CMAKE_CURRENT_SOURCE_DIR}/modularity/context.h
@@ -45,6 +46,8 @@ set(MODULE_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/async/asyncable.h
     ${CMAKE_CURRENT_SOURCE_DIR}/internal/baseapplication.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/internal/baseapplication.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/internal/interactive.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/internal/interactive.h
     ${CMAKE_CURRENT_SOURCE_DIR}/containers.h
     ${CMAKE_CURRENT_SOURCE_DIR}/translation.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/translation.h
@@ -52,6 +55,7 @@ set(MODULE_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/globalmodule.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/globalmodule.h
     ${CMAKE_CURRENT_SOURCE_DIR}/iapplication.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/iinteractive.h
 )
 
 setup_module()
